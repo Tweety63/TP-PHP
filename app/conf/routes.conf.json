@@ -1,0 +1,5 @@
+{
+	"/"        : "App\\routes\\Home",
+	"/about"   : "App\\routes\\About",
+	"/contact" : "App\\routes\\Contact"
+}

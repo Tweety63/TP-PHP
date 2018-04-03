@@ -1,0 +1,279 @@
+Une application PHP basique vous est fournie. Celle-ci est fonctionnelle mais pour l'instant très limitée.
+
+Les objectifs suivants ont été prévus pour être réalisés dans l'ordre.
+
+Cependant, vous fournirez deux versions différentes de l'application, toutes deux complètes (tout le dossier) :
+- La première avec uniquement l'objectif 1 réalisé ;
+- La deuxième avec le maxium d'objectifs réalisés dans l'ordre.
+
+L'entraide est encouragée pour chaque objectif. 
+
+Pour l'objectif 1, vous fournirez un projet chacun, réalisé individuellement. 
+Pour l'ensemble des objectifs suivants, vous pourrez travailler seul ou par groupes de deux maximum. 
+Auquel cas vous fournirez donc un seul projet qui servira pour l'évaluation des deux auteurs.
+
+
+Les bonnes pratiques à respecter :
+- utilisation des namespaces ;
+- le nommage de vos variables, fonctions et objets doit être logique et lisible ;
+- préciser les types des paramètres et valeurs de retours dans vos fonctions et méthodes ;
+- don't repeat yourself : si le même code se retrouve dans plusieurs fichiers, vous pouvez simplifier ! ;
+- separation of concerns : dans l'idéal, une fonction/méthode/classe ne devrait faire qu'une seule chose ;
+- single responsibility : dans l'idéal, une fonction/méthode/classe ne devrait avoir qu'une seule raison de changer ;
+
+
+Les objectifs ont pour but de petit à petit vous amener à comprendre la logique derrière la structure d'une 
+application PHP.
+La méthodologie choisie est simplifiée et perfectible, mais inspirée de principes et pratiques réels. 
+Avec quelques améliorations, le projet réalisé pourrait donc constituer une base propre pour certains de vos futurs 
+développements avec PHP.
+
+Les objectifs vont assez loin... Ne paniquez pas, faites ce que vous pouvez.
+Vous ne serez pas évalués sur le volume de code ni sur votre progression, mais bien sur votre compréhension ainsi que 
+sur la qualité du code que vous produirez.
+
+Enfin petit conseil : l'objectif 1 est de loin le moins intéressant, mais n'est pas à négliger ! En effet, parce qu'il 
+vise directement votre compréhension du code, passer un peu de temps supplémentaire dessus vous permettra de réaliser 
+beaucoup plus vite et facilement les objectifs suivants.
+
+
+Bon dev !
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------
+Objectif 1 :
+
+Aucun commentaire n'est présent dans le code fourni.
+Vous n'écrirez aucun code ni ne modifierez le code existant pour cet objectif.
+En revanche, vous ajouterez des commentaires décrivant au mieux le code existant dans les fichiers suivants :
+
+- /public/index.php
+- /src/features/Runnable.php
+- /src/functions/debug.php
+- /src/services/App.php
+- /src/structures/Service.php
+
+Vous pouvez laisser les autres fichiers tels quels pour cet objectif.
+
+Pas besoin d'écrire des pavés, ceci n'est pas un exercice de rédaction. 
+Montrez simplement que vous comprenez ce qui se passe au sein du code.
+L'entraide est encouragée pour la compréhension, mais écrivez vos commentaires vous-même !
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+---------------------------------------------------------------------------------------------------------------------
+Objectif 2 :
+
+A la ligne 19 du fichier /src/services/App.php, une variable $routes est créée, avec pour valeur un tableau vide.
+L'objectif est ici de remplacer cette ligne afin que $routes ne soit plus un tableau vide, mais un 
+tableau de données récupérées depuis le dossier de configuration de notre application (/conf/).
+
+Vous remplacerez donc cette ligne 19 afin qu'elle récupère un tableau de valeurs issu d'une fonction et/ou d'une 
+classe (au choix) que vous aurez créée vous-même et intégrée à l'application.
+
+Cette fonction/classe prendra en paramètre une chaîne de caractères (qui sera le chemin vers le dossier /conf/).
+Elle aura pour rôle de :
+- parcourir le dossier passé en paramètre afin de récupérer les données de tous les fichiers JSON qu'il contient ;
+- rassembler toutes ces données dans un seul et même tableau, en utilisant les noms des fichiers JSON comme index
+
+Exemple - Si le dossier /conf/ contient les fichiers suivants :
+- conf/
+  - app.conf.json
+  - routes.conf.json
+
+Alors votre fonction/classe devra retourner le tableau PHP suivant :
+[
+	'app' => [
+		/* contenu du fichier app.conf.json transformé en tableau */
+	],
+	'routes' => [
+		/* contenu du fichier routes.conf.json transformé en tableau */
+	],
+]
+
+
+Vous écrirez votre code au sein de l'application en veillant à respecter les principes d'architecture mis en place. 
+Si nécessaire, vous êtes autorisé à étendre cette architecture : création de nouveaux dossiers, conventions de 
+nommage, etc. Essayez simplement de rester au plus proche de la logique actuelle.
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------
+Objectif facultatif :
+
+(nécessite d'avoir terminé l'objectif 2)
+(vous pouvez passer à l'objectif 3 sans réaliser celui-ci)
+
+Une fois que vous aurez terminé l'objectif précédent, vous aurez une fonction ou classe fonctionnelle, permettant de
+créer un tableau de données à partir du contenu de tous les fichiers JSON d'un dossier. 
+
+Une idée d'amélioration est de rendre votre fonction/classe récursive.
+C'est à dire qu'elle soit capable d'explorer les sous-dossiers du dossier /conf/ afin de récupérer les données à 
+l'intérieur avec les mêmes méthodes.
+
+Exemple - Si le dossier /conf/ contient les fichiers et dossiers suivants :
+- conf/
+  - app.conf.json
+  - components/
+    - Button.conf.json
+    - Form.conf.json
+    - Menu.conf.json
+    - Title.conf.json
+  - routes.conf.json
+
+Alors votre fonction/classe devra retourner le tableau PHP suivant :
+[
+	'app' => [
+		/* contenu du fichier app.conf.json transformé en tableau */
+	],
+	'components' => [
+		'Button' => [
+			/* contenu du fichier Button.conf.json transformé en tableau */
+		],
+		'Form' => [
+			/* contenu du fichier Form.conf.json transformé en tableau */
+		],
+		'Menu' => [
+			/* contenu du fichier Menu.conf.json transformé en tableau */
+		],
+		'Title' => [
+			/* contenu du fichier Title.conf.json transformé en tableau */
+		],
+	],
+	'routes' => [
+		/* contenu du fichier routes.conf.json transformé en tableau */
+	],
+]
+
+
+Vous écrirez votre code au sein de l'application en veillant à respecter les principes d'architecture mis en place. 
+Si nécessaire, vous êtes autorisé à étendre cette architecture : création de nouveaux dossiers, conventions de 
+nommage, etc. Essayez simplement de rester au plus proche de la logique actuelle.
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------
+Objectif 3 :
+
+(nécessite d'avoir terminé l'objectif 2)
+
+La ligne 19 du fichier /src/services/App.php, modifiée pour l'objectif 2, récupère un tableau de données et le stocke
+dans une variable $routes. Cette variable $routes est ensuite passée au paramètre du constructeur de la classe 
+App\resources\Router, créant donc un nouvel objet Router.
+
+C'est cette classe Router qui nous intéresse pour cet objectif.
+
+Pour l'instant, elle accepte donc un tableau en paramètre de son constructeur. 
+Elle stocke ce tableau dans une propriété en visibilité protected, appelé $routes.
+Elle offre également les getters/setters pour accéder à ce tableau depuis l'extérieur de la classe.
+Mais pour l'instant, elle n'utilise pas ce tableau, elle ne fait que le stocker.
+
+Cette classe fait également autre chose : lorsqu'elle est utilisée comme une fonction, elle retourne par 
+défaut la chaîne de caractère "Hello World". Ce comportement est implémenté dans la méthode runnable_run().
+
+Pour cet objectif, vous réécrirez cette méthode afin qu'elle :
+- parcoure le tableau $routes stocké comme propriété de la classe ;
+- pour chaque élément du tableau, compare son index avec l'URL actuelle ;
+- si l'index correspond à l'URL actuelle, crée un nouvel objet dont la classe correspond à la valeur de l'index ;
+- retourne l'objet créé ;
+
+
+Un peu d'aide :
+
+Pour récupérer l'URL actuelle :
+Pensez à la superglobale $_SERVER qui contient plein d'informations utiles (voir sa description sur http://php.net) !
+
+A propos du tableau $routes :
+Si vous avez complété l'objectif 2, vous avez déjà compris que le tableau $routes aura pour valeur le contenu du
+fichier /conf/routes.conf.json. 
+
+En observant ce fichier /conf/routes.conf.json, vous pouvez en déduire certaines choses :
+Les objets que l'on veut créer dans notre Router semblent tous appartenir au même namespace "App\routes". 
+Afin de maintenir une architecture propre, on range les classes dans des fichiers correspondants à leur namespace.
+Par exemple, la classe "App\services\App" est écrite dans /src/services/App.php.
+Un objet de la classe "App\routes\Home" sera donc logiquement dans le dossier /src/routes/Home.php et aura pour 
+namespace "App\routes".
+
+Le but de tout ceci est donc que le Router soit un objet qui, à partir d'un tableau de données fourni, va chercher 
+dans ce tableau une clé qui correspond à l'URL actuelle, puis s'il trouve, renvoyer en réponse une un autre 
+objet que l'on appellera une "route".
+
+Les routes sont des objets équivalents à des "pages" (ou à des "controllers" en MVC). Vous ferez donc une route
+par page de votre application, et vous écrirez dans le code de chaque route uniquement ce qui est spécifique à 
+la page concernée (libre à vous de remplir les pages comme vous le souhaitez).
+
+Vous aurez probablement remarqué le fichier /src/structures/Route.php. Il contient la classe abstraite Route, qui 
+vous sera utile puisque vos routes devront en hériter.
+Elle permet d'écrire du code qui sera partagé entre toutes vos routes puisqu'elles en hériteront toutes. 
+
+
+Vous écrirez votre code au sein de l'application en veillant à respecter les principes d'architecture mis en place. 
+Si nécessaire, vous êtes autorisé à étendre cette architecture : création de nouveaux dossiers, conventions de 
+nommage, etc. Essayez simplement de rester au plus proche de la logique actuelle.
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------
+Objectif facultatif :
+
+(nécessite d'avoir terminé l'objectif 3)
+
+Vous créerez une classe App\services\Client qui héritera de App\structures\Service.
+Cet objet représentera l'utilisateur de l'application = le visiteur du site.
+C'est donc dans cet objet que vous implémenterez les méthodes permettant de connecter / déconnecter l'utilisateur.
+
+Vous créerez un formulaire de connexion avec les champs "login" et "password" et l'intégrerez aux pages de votre 
+application. 
+
+Vous créerez également une ou plusieurs classes de votre choix pour gérer la connexion à la base de données ainsi
+que vos requêtes SQL.
+
+Suggestion : si l'on veut suivre le principe de "separation of concerns", le traitement du formulaire de connexion 
+ne devrait pas se faire dans la classe Client. 
+Il devrait être fait dans un autre objet (à vous de voir), puis ensuite seulement appeler les méthodes de votre 
+objet Client. Ainsi ces méthodes (par ex: login() et logout()) auront pour seule responsabilité le fait de manipuler 
+la session afin de connecter/déconnecter l'utilisateur, sans se préoccuper de comment l'utilisateur s'est 
+connecté ou déconnecté. Ce genre de découpage du code en plusieurs classes vous permet d'avoir un code plus facile
+à maintenir et à faire évoluer.
+
+
+
+Vous écrirez votre code au sein de l'application en veillant à respecter les principes d'architecture mis en place. 
+Si nécessaire, vous êtes autorisé à étendre cette architecture : création de nouveaux dossiers, conventions de 
+nommage, etc. Essayez simplement de rester au plus proche de la logique actuelle.
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------
+Objectif facultatif :
+
+(nécessite d'avoir terminé l'objectif 3)
+
+Pour les plus motivés : vous proposerez votre propre solution de templating et/ou génération de composants HTML afin 
+de gérer la partie affichage des pages de l'application. 
+Vous utiliserez évidemment l'objet, en vous inspirant des fondations actuelles du projet.
+
+Suggestion : les objets "routes" créés à l'objectif 3 ne devraient pas directement gérer l'affichage du contenu des
+pages. Là aussi l'idée est de suivre le principe de "separation of concerns", c'est à dire éviter qu'une même classe 
+fasse trop de choses différentes. Dans l'idéal, une classe devrait n'avoir qu'un seul rôle précis et limité.
+Il serait donc judicieux de créer d'autres types d'objets, venant compléter les routes.
+
+
+
+Vous écrirez votre code au sein de l'application en veillant à respecter les principes d'architecture mis en place. 
+Si nécessaire, vous êtes autorisé à étendre cette architecture : création de nouveaux dossiers, conventions de 
+nommage, etc. Essayez simplement de rester au plus proche de la logique actuelle.
+---------------------------------------------------------------------------------------------------------------------
